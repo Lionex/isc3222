@@ -30,12 +30,15 @@ if x < 0
     return
 end
 
+if x < delta
+    fprintf('x = %-g is less than delta = %-g, ',x,delta)
+end
+
 ri = x;
 rk = ri * 2;  % ensure the function can actually enter the loop
-it = 0;  % create a counter variable for the loop
 for i = 1:maxit
     if abs(rk-ri) < delta
-        return;
+        break
     end
     % Copy over value from previous iteration
     rk = ri;
