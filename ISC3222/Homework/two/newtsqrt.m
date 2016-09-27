@@ -2,7 +2,7 @@ function ri = newtsqrt( x, delta, maxit)
 % NEWTSQRT Newton's recurisve method for finding the square root.
 %
 %   Calculates to within margin of error delta, or up to the
-%   maximum number of iterations.
+%   maximum number of iterations maxit.
 %
 % Synopsis: NEWTSQRT(x)
 %           NEWTSQRT(x, delta)
@@ -26,7 +26,12 @@ switch nargin
 end
 
 if x < 0
-    fprintf('x = %-g is negative, cannot calculate the square root.\n', x);
+    fprintf('x = %-g is negative, cannot calculate the square root of x.\n', x);
+    return
+end
+
+if x < delta
+    fprintf('x = %-g is less than delta = %-g, no meaningful calculation possible',x,delta)
     return
 end
 
