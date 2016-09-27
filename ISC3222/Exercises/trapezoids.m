@@ -1,15 +1,15 @@
-function s = integrate( f, a, b, n )
-% INTEGRATE calculates the numerical approximation of a definite integral
+function s = trapezoids( f, a, b, n )
+% TRAPEZOIDS calculates the numerical approximation of a definite integral
 %   Uses the trapezoidal rule to calculate the sum of the areas of
 %   trapezoids that approximate the curve.  Precision increases with larger
-%   n.
+%   n, which represents the number of trapezoids.
 %
-% Synopsis: INTEGRATE(f)
-%           INTEGRATE(f, b)
-%           INTEGRATE(f, a, b)
-%           INTEGRATE(f, a, b, n)
+% Synopsis: TRAPEZOIDS(f)
+%           TRAPEZOIDS(f, b)
+%           TRAPEZOIDS(f, a, b)
+%           TRAPEZOIDS(f, a, b, n)
 %
-% Output:   s = INTEGRATE(f, a, b, n)
+% Output:   s = TRAPEZOIDS(f, a, b, n)
 
 defaultStart = 0;
 defaultEnd = 1;
