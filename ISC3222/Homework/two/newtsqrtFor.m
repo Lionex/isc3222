@@ -32,6 +32,7 @@ end
 
 if x < delta
     fprintf('x = %-g is less than delta = %-g, ',x,delta)
+    return
 end
 
 ri = x;
