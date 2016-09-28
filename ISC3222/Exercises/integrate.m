@@ -9,7 +9,13 @@ function s = trapezoids( f, a, b, n )
 %           TRAPEZOIDS(f, a, b)
 %           TRAPEZOIDS(f, a, b, n)
 %
-% Output:   s = TRAPEZOIDS(f, a, b, n)
+% Input:    f - the function to integrate
+%           a - the lower limit of integration
+%           b - the upper limit of integration
+%           n - the number of trapezoidal panels to create to calculate the
+%               integral
+%
+% Output:   s = TRAPEZOIDS(...)
 
 % defines the default values of optional arguments
 defaultStart = 0;
@@ -28,6 +34,8 @@ switch nargin
     case 3
         n = defaultSteps;
 end
+
+
 
 end
 
