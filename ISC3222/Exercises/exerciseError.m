@@ -27,7 +27,7 @@
 % always equal to 2^(n-1) + 1 where n = number of bits.
 %% Exercise: Store an integer
 % Express 25 as a binary number.
-twentyFive = '0001 1001';
+twentyFive = '0001 1001'
 dec2bin(25)
 %% Floating Point
 % Previously, the point could float anywhere, but now we normalize it with
@@ -43,3 +43,14 @@ dec2bin(25)
 % Finite number of bits in the exponent limits the range
 %
 % Finite number of bits in the mantissa limits the precision
+% So why then is the realmax's exponent only 308?
+realmax
+10^(2^10 - 1) % The largest signed 11 bit number as an exponent of 10
+% However, computers do not store in base 10!
+% The multiplier is calculated as 
+2^(2^10 - 1)
+% with the largest exponent
+2^10 - 1
+% This has nearly the correct exponent, but remember, the mantissa must
+% also be included.
+%% Real Numbers n < 1
