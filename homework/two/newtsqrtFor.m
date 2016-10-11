@@ -23,6 +23,9 @@ switch nargin
     case 1
         delta = 5.0e-6;
         maxit = 25;
+    case 0
+        warning(sprintf('no arguments provided.'))
+        return
 end
 
 if x < 0
@@ -35,20 +38,26 @@ if x < delta
     return
 end
 
+tic
+
 ri = x;
-rk = ri * 2;  % ensure the function can actually enter the loop
 for i = 1:maxit
-    if abs(rk-ri) < delta
-        break
-    end
     % Copy over value from previous iteration
     rk = ri;
 
     % Calculate the next item of the series
     ri = 0.5 * (rk+x / rk);
+    
+    if abs(rk-ri)/rk < delta
+        break
+    end
+end
 
-    % keep track of iterations
-    it = 1 + it;
+toc
+
+relerr = abs(rk-ri)/rk;
+if relerr > delta
+    warning(sprintf('relative error %-g is greater than delta, try increasing maxit', relerr))
 end
 
 end

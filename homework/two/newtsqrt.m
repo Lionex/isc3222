@@ -38,7 +38,7 @@ end
 ri = x;
 rk = ri * 2;  % ensure the function can actually enter the loop
 it = 0;  % create a counter variable for the loop
-while abs(rk-ri) > delta && it < maxit
+while it < maxit
     % Copy over value from previous iteration
     rk = ri;
 
@@ -47,6 +47,10 @@ while abs(rk-ri) > delta && it < maxit
 
     % keep track of iterations
     it = 1 + it;
+    
+    if abs(rk-ri)/rk < delta
+        return
+    end
 end
 
 end
