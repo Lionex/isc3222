@@ -11,33 +11,36 @@ function [conc,M] = G_puff (m,Dx,Dy,v,b)
 % Output: conc = concentration of the containimant [kg/m^3] 
 %         M    = movie of concentration contours 
 
-% Default input values
-if (nargin == 0)
-%
-% If a user of the code does not provide any input, what will you do?
-%
-%
-end
+if (nargin < 5),  b  = 1.0; end % m
+if (nargin < 4),  v  = 0.5; end % m/day
+if (nargin < 3),  Dx = 0.5; end % m^2/day
+if (nargin < 2),  Dy = 0.1; end % m^2/day
+if (nargin == 0), m  = 1.0; end % kg
 
-% Discretization of the domain. You need to understand what meshgrid does
-% We had an exercise of meshgrid in the hotkey practice of the last lab.
-[X,Y] = meshgrid(0:2.5:100,-50:2.5:50);
-
-% Discretization in time. You decide what to do!
-%
-
-% Initalize the concentration matrix.
-conc = ......
+[X,Y]=meshgrid(0:2.5:100,-50:2.5:50);
 
 % Start the loop of time. Vecterization is needed for the calculation.
 % Do not use loop for the cells in the x-y space.
-for t = ......
-    conc=......
+tmax = 100/v;
+tmin = tmax/50;
+dt   = tmax/50;
+
+% Initalize the concentration matrix.
+conc = zeros(size(X,1),size(X,2),size(tmax:dt:tmin,2));
+
+it = 0;
+
+set(gca,'nextplot','replacechildren');
+
+for t = tmin:dt:tmax;
+    it = it + 1;
+    conc(:,:,it) = ...
+        (m./b) ./ (4.*pi.*sqrt(Dx.*Dy)) .* exp(-(X-v*t).^2./(4*Dx*t) - Y.^2./(4*Dy*t));
     
     % Plot contours
-    contourf(X,Y,conc(:,:,it))
-    
-    % More lines are needed to finish the assignment
-    %
-    %
+    contourf(X,Y,conc(:,:,it));
+
+    xlabel('X(m)'); ylabel('Y(m)');
+    set(gca,'Visible','on');
+    M(it) = getframe(gca);
 end
