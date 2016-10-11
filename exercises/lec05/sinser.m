@@ -22,6 +22,10 @@ fprintf('%3d  %11.3e  %12.8f\n',1,term,ssum);
 
 for k=3:2:(2*n-1)
   term = -term * x*x/(k*(k-1));                  %  Next term in the series
+  % Calculating the terms with the ratio can prevent trucation and overflow
+  % erors, because the series representation of the sin has factorial terms
+  % that grow very large in mangintude, but the 
+  
   ssum = ssum + term;
   fprintf('%3d  %11.3e  %12.8f\n',k,term,ssum); 
   if abs(term/ssum)<tol, break;  end             %  True at convergence
