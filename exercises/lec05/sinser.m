@@ -13,8 +13,8 @@ function ssum = sinser(x,tol,n)
 %
 % Output:   ssum = value of series sum after nterms or tolerance is met
 
-if nargin < 2,  tol = 5e-9;  end
-if nargin < 3,  n = 15;      end
+if nargin < 2,  tol = 5e-9; end
+if nargin < 3,  n   = 15;   end
 
 term = x;  ssum = term;         %  Initialize series
 fprintf('Series approximation to sin(%f)\n\n  k      term         ssum\n',x);
