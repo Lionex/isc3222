@@ -21,24 +21,23 @@ if (nargin == 0), m  = 1.0; end % kg
 % Do not use loop for the cells in the x-y space.
 tmax = 100/v;
 
-[X,Y,T]=meshgrid(0:2.5:100,-50:2.5:50,tmax/50:tmax/50:tmax);
+[X,Y,T] = meshgrid(0:2.5:100,-50:2.5:50,tmax/50:tmax/50:tmax);
 
 % Initalize the concentration matrix.
 conc = zeros(size(X,1),size(Y,2),size(tmax/50:tmax/50:tmax,3));
-
-puff = @(X,Y,T) (m/b) / (4*pi*sqrt(Dx*Dy)) .* exp(-(X-v.*T).^2./(4*Dx.*T)-Y.^2./(4*Dy.*T));
-
-conc = puff(X,Y,T);
+conc = (m/b) / (4*pi*sqrt(Dx*Dy)) .* exp(-(X-v.*T).^2./(4*Dx.*T) - Y.^2./(4*Dy.*T));
 
 set(gca,'nextplot','replacechildren');
+
 parfor it = 1:size(T,2);
     contourf(X(:,:,it),Y(:,:,it),conc(:,:,it));
     xlabel(gca,'X (m)');
     ylabel(gca,'Y (m)');
-    time_title=['Simulation time t= ',num2str(it),' day'];
+    time_title = ['Simulation time t= ',num2str(it),' day'];
     title(gca,time_title);
     set(gca,'Visible','on');
-    M(it)=getframe(gca);
+    M(it) = getframe(gca); 
 end
 
 end
+s
