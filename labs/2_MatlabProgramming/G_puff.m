@@ -40,4 +40,3 @@ parfor it = 1:size(T,2);
 end
 
 end
-s
